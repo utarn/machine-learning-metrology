@@ -9,7 +9,9 @@ Citations must be repeated in the first markdown cell of every notebook that use
 | `Pontius.dat` | `day1/regression/` | NIST StRD "Pontius" load-cell calibration — https://www.itl.nist.gov/div898/strd/lls/data/Pontius.shtml | Public domain (US Gov). Citation: Pontius, P., NIST. *Load Cell Calibration*. NIST StRD. |
 | `ccpp_power_plant.csv` | `day1/ml_workflow_eda/`, `day1/feature_engineering/`, `day1/regression/`, Module 5 (regression metrics) | UCI Combined Cycle Power Plant — https://doi.org/10.24432/C5002N | CC BY 4.0. Citation: Tüfekci, P. & Kaya, H. (2014). *Combined Cycle Power Plant* [Data set]. UCI ML Repository. |
 | `air_quality_uci.csv` | `day1/ml_workflow_eda/`, Module 6 | UCI Air Quality — https://doi.org/10.24432/C59K5F | CC BY 4.0. Citation: De Vito, S., et al. (2008). *Air Quality* [Data set]. UCI ML Repository. |
-| `secom.zip` (not yet committed — Day 2) | Module 4/5, Capstone B | UCI SECOM — https://doi.org/10.24432/C54305 | CC BY 4.0 |
+| `secom.zip` | `day2/classification/`, `day2/evaluation/`, Capstone B | UCI SECOM — https://doi.org/10.24432/C54305 | CC BY 4.0. Citation: McCann, M. & Johnston, A. (2008). *SECOM* [Data set]. UCI ML Repository. |
+| `machine_temperature_system_failure.csv` | `day2/anomaly_detection/` | Numenta Anomaly Benchmark (NAB), `realKnownCause/machine_temperature_system_failure` — https://github.com/numenta/NAB | MIT. Citation: Ahmad, S., et al. (2017). "Unsupervised real-time anomaly detection for streaming data", *Neurocomputing* 262. |
+| `nab_machine_temperature_labels.json` | `day2/anomaly_detection/` | NAB companion anomaly-window labels — https://github.com/numenta/NAB/blob/master/labels/combined_windows.json | MIT (same repo). |
 
 Notes:
 
@@ -18,3 +20,9 @@ Notes:
 - `air_quality_uci.csv` is the official file as-is: semicolon-separated, decimal **comma**,
   missing values tagged `-200` — parsing it is part of the Day-1 EDA lesson.
 - `Pontius.dat` is the official NIST StRD ASCII file (40 observations + certified values header).
+- `secom.zip` is the official UCI zip, unmodified (contains `secom.data` — 1,567 × 590
+  space-separated features, many NaNs — plus `secom_labels.data` with label `-1` = PASS /
+  `1` = FAIL and a quoted timestamp; opening it with `zipfile` is part of the lesson).
+- `machine_temperature_system_failure.csv` is the official NAB file as-is (22,696 rows of
+  `timestamp,value`, 5-minute sampling); `nab_machine_temperature_labels.json` holds the
+  4 hand-labeled anomaly windows for the same series.

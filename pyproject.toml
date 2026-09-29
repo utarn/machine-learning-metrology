@@ -1,0 +1,20 @@
+[project]
+name = "ml-metrology-course"
+version = "0.1.0"
+description = "Course material: Machine Learning for Advanced Metrology Research (RMUTSB)"
+requires-python = ">=3.13,<3.15"
+dependencies = [
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "pyarrow==25.0.1",
+    "polars==1.44.2",
+    "matplotlib==3.11.2",
+    "seaborn==0.13.2",
+    "scikit-learn==1.9.1",
+    "xgboost==3.4.1",
+    "shap==0.52.0",
+    "streamlit==1.64.0",
+    "joblib==1.6.0",
+    "jupyterlab==4.6.4",
+    "ipykernel==7.3.0",
+]

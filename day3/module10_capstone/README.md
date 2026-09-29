@@ -17,7 +17,7 @@
 ## การรัน Streamlit demo
 
 ```bash
-uv run streamlit run day3/capstone/app.py
+uv run streamlit run day3/module10_capstone/app.py
 ```
 
 ## สิ่งที่ต้องส่ง (ทุกแทร็ก)

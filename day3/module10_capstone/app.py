@@ -1,6 +1,6 @@
 """Streamlit demo — Drift Predictor & Recalibration Interval (Capstone C, Module 10)
 
-รัน:  uv run streamlit run day3/capstone/app.py
+รัน:  uv run streamlit run day3/module10_capstone/app.py
 
 Demo ของแทร็ก C: โหลดซีรีส์ drift จริง (NOAA CO₂ แมปเป็น "ค่าเบี่ยงเบนของ
 working standard"), เทรนโมเดล linear บน lag features, พยากรณ์แบบ recursive
@@ -102,7 +102,7 @@ with st.sidebar:
     st.markdown(
         "**โมเดล:** linear regression บน year-over-year differences "
         "(lags Δt−1, Δt−12) · วัดด้วย TimeSeriesSplit — ดูเหตุผลเต็มใน "
-        "`day3/capstone/capstone_C_drift_predictor_solution.ipynb`"
+        "`day3/module10_capstone/capstone_C_drift_predictor_solution.ipynb`"
     )
 
 out = fit_and_forecast(horizon)

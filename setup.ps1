@@ -12,7 +12,7 @@
 # Offline fallback (restricted lab network):
 #   On a machine WITH internet:  uv cache prune; uv sync; copy %LOCALAPPDATA%\uv\cache to USB
 #   On the lab machine:          set UV_CACHE_DIR to the copied cache, then: uv sync --offline
-#   (see day1/environment/ notebook for the step-by-step)
+#   (see day1/module0_environment/ notebook for the step-by-step)
 
 $ErrorActionPreference = "Stop"
 $UvVersion = "0.12.20"  # pinned installer version for reproducibility (docs/research/version-stack.md)

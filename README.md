@@ -6,17 +6,17 @@
 
 | โฟลเดอร์ | หัวข้อ |
 |---|---|
-| `day1/environment/` | Module 0 — ติดตั้งสภาพแวดล้อม + พื้นฐาน Python |
-| `day1/ml_workflow_eda/` | Module 1 — workflow ของ ML และ EDA |
-| `day1/feature_engineering/` | Module 2 — feature engineering |
-| `day1/regression/` | Module 3 — sensor calibration curve (regression) |
-| `day2/classification/` | Module 4 — pass/fail classification |
-| `day2/evaluation/` | Module 5 — model evaluation |
-| `day2/clustering/` | Module 6 — clustering |
-| `day2/anomaly_detection/` | Module 7 — anomaly detection บน telemetry |
-| `day3/time_series/` | Module 8 — time-series forecasting (reference drift) |
-| `day3/pipelines_interpretability/` | Module 9 — pipelines & SHAP |
-| `day3/capstone/` | Module 10 — capstone (3 แทร็ก) + Streamlit demo |
+| `day1/module0_environment/` | Module 0 — ติดตั้งสภาพแวดล้อม + พื้นฐาน Python |
+| `day1/module1_ml_workflow_eda/` | Module 1 — workflow ของ ML และ EDA |
+| `day1/module2_feature_engineering/` | Module 2 — feature engineering |
+| `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
+| `day2/module4_classification/` | Module 4 — pass/fail classification |
+| `day2/module5_evaluation/` | Module 5 — model evaluation |
+| `day2/module6_clustering/` | Module 6 — clustering |
+| `day2/module7_anomaly_detection/` | Module 7 — anomaly detection บน telemetry |
+| `day3/module8_time_series/` | Module 8 — time-series forecasting (reference drift) |
+| `day3/module9_pipelines_interpretability/` | Module 9 — pipelines & SHAP |
+| `day3/module10_capstone/` | Module 10 — capstone (3 แทร็ก) + Streamlit demo |
 
 ในแต่ละหัวข้อ: `book.ipynb` = สื่อประกอบการสอน · `exercise.ipynb` = **แบบฝึกหัดที่คุณทำ** (เติมช่อง `# TODO`) · `explanation.md` = สคริปต์ภาพประกอบ ส่วนไฟล์เฉลย (`solution.ipynb`) ผู้สอนจะเปิดเผยในห้อง **หลังจบช่วงแล็บนั้น ๆ**
 
@@ -48,4 +48,4 @@ uv run jupyter lab
 ## การส่งงาน
 
 - **แล็บ (Modules 0–9):** ทำใน `exercise.ipynb` — ผู้สอนเช็คความคืบหน้าในห้อง ไม่ต้องส่งไฟล์
-- **Capstone (Module 10):** ส่ง zip ของโฟลเดอร์ repo + โน้ตบุ๊กที่รันผ่านผ่าน LMS ภายใน 1 สัปดาห์ — เกณฑ์ให้คะแนนอยู่ใน `day3/capstone/README.md`
+- **Capstone (Module 10):** ส่ง zip ของโฟลเดอร์ repo + โน้ตบุ๊กที่รันผ่านผ่าน LMS ภายใน 1 สัปดาห์ — เกณฑ์ให้คะแนนอยู่ใน `day3/module10_capstone/README.md`

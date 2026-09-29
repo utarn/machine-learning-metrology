@@ -7,7 +7,7 @@ Produces ``ml-metrology-learner-<ref>.zip`` per the packaging decision
 (wayfinder #11 → #13): everything in the repo tree at <ref> EXCEPT
 
 - all ``solution.ipynb`` files (instructor's answer key)
-- the capstone exemplar ``day3/capstone/capstone_C_drift_predictor_solution.ipynb``
+- the capstone exemplar ``day3/module10_capstone/capstone_C_drift_predictor_solution.ipynb``
 - ``docs/agents/`` (repo tooling docs, not learner material)
 - ``tools/`` and ``smoke_test.py`` stay IN — learners verify their setup too.
 
@@ -25,7 +25,7 @@ from pathlib import Path, PurePosixPath
 
 EXCLUDE_EXACT = {
     "CLAUDE.md",
-    "day3/capstone/capstone_C_drift_predictor_solution.ipynb",
+    "day3/module10_capstone/capstone_C_drift_predictor_solution.ipynb",
 }
 EXCLUDE_PREFIXES = ("docs/agents/", "tools/")
 EXCLUDE_NAMES = {"solution.ipynb"}

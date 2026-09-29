@@ -24,6 +24,7 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 EXCLUDE_EXACT = {
+    "CLAUDE.md",
     "day3/capstone/capstone_C_drift_predictor_solution.ipynb",
 }
 EXCLUDE_PREFIXES = ("docs/agents/", "tools/")

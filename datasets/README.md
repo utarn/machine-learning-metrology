@@ -12,6 +12,8 @@ Citations must be repeated in the first markdown cell of every notebook that use
 | `secom.zip` | `day2/classification/`, `day2/evaluation/`, Capstone B | UCI SECOM — https://doi.org/10.24432/C54305 | CC BY 4.0. Citation: McCann, M. & Johnston, A. (2008). *SECOM* [Data set]. UCI ML Repository. |
 | `machine_temperature_system_failure.csv` | `day2/anomaly_detection/` | Numenta Anomaly Benchmark (NAB), `realKnownCause/machine_temperature_system_failure` — https://github.com/numenta/NAB | MIT. Citation: Ahmad, S., et al. (2017). "Unsupervised real-time anomaly detection for streaming data", *Neurocomputing* 262. |
 | `nab_machine_temperature_labels.json` | `day2/anomaly_detection/` | NAB companion anomaly-window labels — https://github.com/numenta/NAB/blob/master/labels/combined_windows.json | MIT (same repo). |
+| `co2_mm_gl.csv` | `day3/time_series/`, Capstone C | NOAA GML globally-averaged CO₂ monthly means — https://gml.noaa.gov/ccgg/trends/ | Public domain (US Gov); fair credit required per file header. Citation: Lan, X., Thoning, K.W., Dlugokencky, E.J. *Trends in globally-averaged CO₂*, NOAA GML, Version 2026-09. |
+| `cmapss_turbofan.zip` | Capstone A | NASA C-MAPSS Turbofan Engine Degradation Simulation Data Set — https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/ | Free, attribution required (no OSS license). Citation: Saxena, A., Goebel, K., Simon, D., Eklund, N. (2008). "Damage propagation modeling for aircraft engine run-to-failure simulation", *Proc. PHM 2008*. |
 
 Notes:
 
@@ -26,3 +28,9 @@ Notes:
 - `machine_temperature_system_failure.csv` is the official NAB file as-is (22,696 rows of
   `timestamp,value`, 5-minute sampling); `nab_machine_temperature_labels.json` holds the
   4 hand-labeled anomaly windows for the same series.
+- `co2_mm_gl.csv` is the official NOAA GML file as-is: `#` comment header (the credit
+  policy lives in it), then `year,month,decimal,average,average_unc,trend,trend_unc` —
+  missing months carry the sentinel `-99.99` (handling it is part of the Module 8 lesson).
+- `cmapss_turbofan.zip` is the official inner `CMAPSSData.zip` from NASA PCoE, unmodified
+  (contains `train/test_FD001..FD004.txt`, `RUL_FD00xx.txt`, the readme and the Saxena
+  2008 paper; opening it with `zipfile` is part of Capstone A).

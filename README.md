@@ -8,6 +8,7 @@
 |---|---|
 | `day1/module0_primer/` | Module M0 — Primer: จากข้อมูลสู่โมเดล (v2) |
 | `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
+| `day1/module2_thai_ocr_bakeoff/` | Module M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |
@@ -55,7 +56,7 @@ scripts/check_materials.sh
 - [ ] **เครื่องทดสอบ** — ลองตั้งแต่เครื่องจริง 1 เครื่องของห้อง: `setup.ps1` → `smoke_test.py` ต้องขึ้น PASS → เปิด `uv run jupyter lab` ได้
 - [ ] **เครื่องผู้สอน** — รัน `scripts/check_materials.sh` ผ่านก่อนวันสอน
 - [ ] **Pre-bundle โมเดล/dataset ลงเครื่อง offline** (ดูแผนด้านล่าง)
-- [ ] **ระบบเครื่อง:** Tesseract binary + Thai traineddata ติดตั้งแล้ว (โมดูล OCR — เป็น system package ไม่ได้อยู่ใน pip): Windows ผ่าน installer ของ UB-Mannheim + คัดลอก `tha.traineddata` ลง `tessdata/`, macOS `brew install tesseract tesseract-lang`
+- [ ] **ระบบเครื่อง:** Tesseract binary ติดตั้งแล้ว (โมดูล M2 OCR — เป็น system package ไม่ได้อยู่ใน pip): Windows ผ่าน installer ของ UB-Mannheim, macOS `brew install tesseract`, Ubuntu `sudo apt install tesseract-ocr` (ไฟล์ภาษา `tha`/`eng` traineddata อยู่ใน repo แล้วที่ `datasets/tessdata/` — notebook ชี้เองผ่าน `--tessdata-dir`)
 
 ## แผน pre-bundle โมเดล/dataset ลงเครื่อง offline
 
@@ -66,11 +67,11 @@ scripts/check_materials.sh
 | Fashion-MNIST | M1, capstone A | MIT | ~30–60 MB |
 | torchvision weights: MobileNetV3 (M1), backbone ของ anomalib (M6) | M1, M6 | BSD-3 / Apache-2.0 | ~50–150 MB |
 | EasyOCR weights (detection + Thai recognition) | M2 | Apache-2.0 | ~90 MB |
-| Tesseract `tha.traineddata` (tessdata_best) | M2 | Apache-2.0 | ~10–25 MB |
-| openthaigpt/thai-trocr | M2 | Apache-2.0 | ~1.3 GB |
-| Surya models (detection / recognition / layout) | M2 | code Apache-2.0 — ตรวจ model card ของ weights ก่อนแจกต่อ | ~1–2 GB |
-| thai-ocr-evaluation | M2 | CC BY-SA 4.0 (share-alike) | ตรวจขนาดจริงตอนเตรียม (ไม่รวมในผลรวม) |
-| **รวมโดยประมาณ** | | | **~2.5–4 GB** |
+| Tesseract `tha`/`eng` traineddata (tessdata_best) | M2 | Apache-2.0 | ~23 MB — **อยู่ใน repo แล้ว** (`datasets/tessdata/`, notebook ชี้ผ่าน `--tessdata-dir` เอง) |
+| openthaigpt/thai-trocr | M2 | Apache-2.0 | ~0.4 GB (วัดจริง — model card เคยประมาณ ~1.3 GB แต่ไฟล์จริง ~411 MB) |
+| Surya models (layout ~240 MB + table-rec ~210 MB — surya 0.16.7 pin, ไม่ต้องใช้ foundation/detection) | M2 | code Apache-2.0 — weights ของ Datalab แจกผ่าน S3 ของ datalab เอง ตรวจข้อกำหนดก่อนแจกต่อ | ~0.5 GB |
+| thai-ocr-evaluation (test split) | M2 | CC BY-SA 4.0 (share-alike) | ~4 MB — **อยู่ใน repo แล้ว** (`datasets/thai_ocr_evaluation/`) |
+| **รวมโดยประมาณ** | | | **~1 GB** (ไม่รวมไฟล์ที่อยู่ใน repo แล้ว) |
 
 **ห้าม pre-bundle (license ไม่อนุญาตแจกต่อเชิงพาณิชย์):**
 
@@ -78,6 +79,19 @@ scripts/check_materials.sh
 - **MVTec AD** (non-commercial) — ไม่ใช้; M6 ใช้รูปถ่ายจริงของผู้เรียนแทน
 
 ชุดข้อมูลตารางของ v1 ทั้งหมดอยู่ใน `datasets/` แล้ว (license แจกต่อได้ — ดู `datasets/README.md`)
+
+**วิธี pre-bundle โมเดล M2 ลงเครื่อง offline** (รันครั้งเดียวบนเครื่องที่มีอินเทอร์เน็ต
+จากนั้นคัดลอกโฟลเดอร์ cache ไปยังเครื่องผู้เรียนที่ตำแหน่งเดียวกัน — notebook
+ของ M2 โหลดจากตำแหน่งมาตรฐานเหล่านี้เอง ไม่ต้องตั้งค่าอะไรเพิ่ม):
+
+| โมเดล | ตำแหน่ง cache | คำสั่งเตรียม |
+|---|---|---|
+| EasyOCR (craft_mlt_25k + thai_g2) | `~/.EasyOCR/model/` (Windows `%USERPROFILE%\\.EasyOCR\\model`) | รันครั้งเดียว: `python -c "import easyocr; easyocr.Reader(['th','en'], gpu=False, verbose=False)"` — ถ้าอยากเก็บไว้ที่อื่น ตั้ง `EASYOCR_MODULE_PATH` แล้วคัดลอกโฟลเดอร์นั้น |
+| thai-trocr | HF cache: `~/.cache/huggingface` (macOS ก็ path เดียวกัน) | `python -c "from transformers import TrOCRProcessor, VisionEncoderDecoderModel as M; TrOCRProcessor.from_pretrained('openthaigpt/thai-trocr'); M.from_pretrained('openthaigpt/thai-trocr')"` (หรือตั้ง `HF_HOME` ให้เก็บในโฟลเดอร์ที่ควบคุมได้) |
+| Surya (layout + table-rec) | `MODEL_CACHE_DIR` — ค่าเริ่มต้น: `~/Library/Caches/datalab/models` (macOS) / `~/.cache/datalab/models` (Linux) / `%LOCALAPPDATA%\datalab\models` (Windows) | `python -c "from surya.layout import LayoutPredictor; from surya.table_rec import TableRecPredictor; LayoutPredictor(); TableRecPredictor()"` — คัดลอกทั้งโฟลเดอร์ `datalab` ไปยังตำแหน่งเดียวกันบนเครื่องเป้าหมาย (หรือตั้ง `MODEL_CACHE_DIR` ให้ตรง) |
+
+หมายเหตุ: tesseract **binary** ยังเป็น system package ที่ติดตั้งตาม checklist
+ด้านบน — ส่วน `tha`/`eng` traineddata ไม่ต้องทำอะไรเพิ่มเพราะอยู่ใน repo แล้ว
 
 ## เปิดโน้ตบุ๊ก
 

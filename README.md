@@ -10,6 +10,7 @@
 | `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
 | `day1/module2_thai_ocr_bakeoff/` | Module M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table (v2) |
 | `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
+| `day3/module7_grad_cam_error_analysis/` | Module M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |

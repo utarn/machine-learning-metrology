@@ -6,8 +6,8 @@
 
 | โฟลเดอร์ | หัวข้อ |
 |---|---|
-| `day1/module0_environment/` | Module 0 — ติดตั้งสภาพแวดล้อม + พื้นฐาน Python |
-| `day1/module1_ml_workflow_eda/` | Module 1 — workflow ของ ML และ EDA |
+| `day1/module0_primer/` | Module M0 — Primer: จากข้อมูลสู่โมเดล (v2) |
+| `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |

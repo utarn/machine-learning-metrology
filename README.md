@@ -12,6 +12,7 @@
 | `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
 | `day2/module4_sound_to_numbers/` | Module M4 — เสียง→ตัวเลข→โมเดล: MFCC features + random forest บน ESC-50 (offline CPU) (v2) |
 | `day2/module4_esc50_cnn/` | Module M4-CNN — เทรน spectrogram CNN จากศูนย์ บน ESC-50 (Kaggle GPU) (v2) |
+| `day2/module5_kws_demucs_asr/` | Module M5 — เทรน KWS CNN จากศูนย์บน Speech Commands v2 + Demucs แยก stems + ASR bake-off Whisper vs Typhoon-ASR-0.6B วัด WER บน FLEURS-Thai (Kaggle GPU) (v2) |
 | `day3/module7_grad_cam_error_analysis/` | Module M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
@@ -59,6 +60,7 @@ scripts/check_materials.sh
 - [ ] **บัญชี Kaggle รายคน** — ผู้เรียนทุกคนสมัครและยืนยันอีเมล/โทรศัพท์ก่อนวันอบรม (ยืนยันเบอร์เพื่อปลดล็อก GPU/Internet ใน notebook)
 - [ ] **Kaggle T4 — validate โมดูล M3 ด้วยมือ 1 รอบ** — รัน `day2/module3_thai_sentiment_mbert/book.ipynb` ท็อป-ท้ายจบบน Kaggle (Accelerator: GPU T4, Internet: On) ก่อนวันอบรม — สคริปต์ตรวจสื่อ lint ให้แต่ไม่ execute โมดูล Kaggle
 - [ ] **Kaggle T4 — validate โมดูล M4-CNN ด้วยมือ 1 รอบ** — รัน `day2/module4_esc50_cnn/book.ipynb` ท็อป-ท้ายจบบน Kaggle (GPU T4, Internet: On) — ใช้เวลาราว 20–25 นาที (ดาวน์โหลด ESC-50 ~600 MB รวมอยู่ใน notebook แล้ว) — จด accuracy ของสองวิธีจากรอบนั้นไว้เทียบในห้อง
+- [ ] **Kaggle T4 — validate โมดูล M5 ด้วยมือ 1 รอบ** — รัน `day2/module5_kws_demucs_asr/book.ipynb` ท็อป-ท้ายจบบน Kaggle (Accelerator: GPU T4, Internet: On) — ตรวจว่า KWS เทรนจบใน ~30 นาที + ได้ accuracy ที่อ่านผลได้, Demucs เปิดฟัง stems ได้, ตาราง WER ออกมาจริง — สคริปต์ตรวจสื่อ lint ให้แต่ไม่ execute โมดูล Kaggle
 - [ ] **ESC-50 ลงเครื่องผู้เรียน (M4-RF)** — ครึ่ง RF ของ M4 รันบนเครื่องผู้เรียน ต้องมีข้อมูล ESC-50 บนดิสก์ก่อน (license ห้าม bundle — ดาวน์โหลดเองจาก [GitHub ของ ESC-50](https://github.com/karolpiczak/ESC-50)) วางตามตำแหน่งที่ notebook หาเจอ (ดูหัวข้อ pre-bundle ด้านล่าง)
 - [ ] **เครื่องทดสอบ** — ลองตั้งแต่เครื่องจริง 1 เครื่องของห้อง: `setup.ps1` → `smoke_test.py` ต้องขึ้น PASS → เปิด `uv run jupyter lab` ได้
 - [ ] **เครื่องผู้สอน** — รัน `scripts/check_materials.sh` ผ่านก่อนวันสอน

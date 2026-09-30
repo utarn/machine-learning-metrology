@@ -20,6 +20,13 @@ datasets==5.0.1
 # --- audio — Modules M4 (spectrogram CNN) / M5 (Demucs, ASR) ---
 librosa==1.0.0
 demucs==4.1.0
+# soundfile — M5 reads Speech Commands / FLEURS wav files directly
+# (librosa pulls it in transitively, but M5 imports it explicitly)
+soundfile==0.14.0
+
+# NOTE (M5 only): typhoon-ai/typhoon-asr-qwen-0.6b-ctx requires
+# transformers>=5.13, so the M5 notebooks pin their own
+# transformers==5.17.0 in their install cell; M2/M3 stay on 4.57.6.
 
 # --- text — Module M3 (fine-tune mBERT on Thai sentiment) ---
 # Trainer (transformers 4.x) needs accelerate on top of torch — not

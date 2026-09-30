@@ -21,17 +21,29 @@ ipykernel==7.3.0
 
 # --- PyTorch single base (CPU wheels; plain `torch` from PyPI is CPU-only on
 #     Windows/macOS) ---
+# transformers pinned to 4.x (not 5.x) to match surya-ocr 0.16.7 (see below)
+# — thai-trocr / Whisper / mBERT all work on 4.57. Adjusted during #27.
 torch==2.14.0
 torchvision==0.29.0
 torchaudio==2.11.0
-transformers==5.17.0
+transformers==4.57.6
 datasets==5.0.1
 
-# --- OCR — Module M2 (tesseract binary + `tha` traineddata are system
-#     packages, see README pre-workshop checklist) ---
+# --- OCR — Module M2 (tesseract binary is a system package, see README
+#     pre-workshop checklist; `tha`/`eng` traineddata live in the repo at
+#     datasets/tessdata/) ---
 easyocr==1.7.2
 pytesseract==0.3.13
-surya-ocr==0.22.1
+# surya-ocr pinned to 0.16.7, not newer, during #27: surya >= 0.17 replaced
+# the dedicated layout model with a foundation-model token-decoder whose
+# layout task degenerates on real pages (returns a single PageHeader box on
+# our sample calibration-report pages — measured), and surya >= 0.20 went
+# further, turning layout/table-rec/recognition into a VLM stack needing a
+# llama-server binary + a multi-GB GGUF (breaks offline CPU). 0.16.7 keeps
+# standalone torch models: layout (11 sensible boxes/page verified) and
+# table-rec (rows/cols/cells verified) both run in-process on CPU offline.
+surya-ocr==0.16.7
+requests==2.34.2
 
 # --- anomaly detection — Module M6 (torch/torchvision come from the pins
 #     above; anomalib's `cpu` extra would double-pin them via torchcodec) ---

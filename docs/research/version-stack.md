@@ -16,6 +16,25 @@ polars GitHub releases, uv installation docs).
 > uv locks only the target platforms (`tool.uv.environments`) because shap's
 > darwin-x86_64 `numba<0.63` pin conflicts with librosa 1.0.0 / numpy 2.5.
 
+> **Update 2026-09-30 (#27, M2 Thai OCR):** surya-ocr 0.22.1 was replaced by
+> **surya-ocr 0.16.7** and transformers 5.17.0 by **4.57.6** (both files). Reason:
+> surya >= 0.20 rewrote layout/table-rec/recognition as a VLM inference stack that
+> requires a llama-server binary (system package) plus a multi-GB GGUF download —
+> incompatible with the offline-CPU constraint and the Windows learner path. 0.17.x
+> still ships plain torch models, but its layout task is the foundation-model
+> token-decoder and it degenerates on real pages (measured on our synthetic
+> calibration-report pages: a dense table+figure page came back as ONE
+> `PageHeader` box), so **0.16.7 — the last release with the dedicated layout
+> model — is the pin** (verified: layout returns 11 sensible boxes on the same
+> page; table-rec 23 rows / 5 cols / 115 cells; both CPU, offline after cache
+> populate). Both 0.16.7 and 0.17.x vendor code against transformers 4.x
+> internals, hence the 4.57.6 pin — thai-trocr / Whisper / mBERT all work on
+> 4.57. With 0.16.7 the M2 notebooks need only the **layout (~240 MB)** and
+> **table-rec (~210 MB)** models (not the 1.4 GB foundation model). Model caches
+> for pre-bundle: EasyOCR `~/.EasyOCR`, thai-trocr HF cache (`HF_HOME`), Surya
+> `MODEL_CACHE_DIR` (default per-OS datalab cache dir; manifest-based local-only
+> check → no network once the dir is populated).
+
 ## Pinned versions (ready for requirements.txt)
 
 ```text

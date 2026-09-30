@@ -10,3 +10,7 @@ __pycache__/
 
 # Downloaded datasets (Fashion-MNIST etc. — pre-bundled on learner machines)
 data/
+
+# ESC-50 (CC BY-NC 3.0 — non-commercial: never commit the audio into the repo;
+# notebooks look for it here or in ~/.cache/esc50, see README pre-bundle plan)
+datasets/esc50/

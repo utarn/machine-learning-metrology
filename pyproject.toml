@@ -1,8 +1,9 @@
 [project]
 name = "ml-metrology-course"
-version = "0.1.0"
+version = "0.2.0"
 description = "Course material: Machine Learning for Advanced Metrology Research (RMUTSB)"
 requires-python = ">=3.13,<3.15"
+# Offline CPU stack — mirrors requirements-offline.txt (pip fallback).
 dependencies = [
     "numpy==2.5.3",
     "pandas==3.0.6",
@@ -11,10 +12,51 @@ dependencies = [
     "matplotlib==3.11.2",
     "seaborn==0.13.2",
     "scikit-learn==1.9.1",
-    "xgboost==3.4.1",
-    "shap==0.52.0",
-    "streamlit==1.64.0",
     "joblib==1.6.0",
     "jupyterlab==4.6.4",
     "ipykernel==7.3.0",
+    "torch==2.14.0",
+    "torchvision==0.29.0",
+    "torchaudio==2.11.0",
+    "transformers==5.17.0",
+    "datasets==5.0.1",
+    "easyocr==1.7.2",
+    "pytesseract==0.3.13",
+    "surya-ocr==0.22.1",
+    "anomalib==2.6.2",
+    "librosa==1.0.0",
+    "pythainlp==5.3.8",
+    "jiwer==4.0.0",
+]
+
+[tool.uv]
+# Groups installed by plain `uv sync`. lint = material quality checks
+# (repo convention: .venv/bin/nbqa flake8). v1-legacy is TRANSITIONAL —
+# required only by the archived v1 material still in day1/–day3/
+# (xgboost/shap/streamlit left the main stack per #21); drop it when the
+# v1 modules are retired.
+default-groups = ["lint", "v1-legacy"]
+# Platforms the course targets. darwin-x86_64 is excluded: shap (v1-legacy
+# group only) pins numba<0.63 there, which conflicts with the numpy 2.5
+# stack (see "macOS Intel quirk" in docs/research/version-stack.md).
+environments = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux'",
+]
+
+[dependency-groups]
+# Transitional: needed only by the archived v1 material still in day1/–day3/
+# (xgboost/shap/streamlit were removed from the main stack per #21).
+# Delete this group when the v1 modules are retired.
+v1-legacy = [
+    "xgboost==3.4.1",
+    "shap==0.52.0",
+    "streamlit==1.64.0",
+]
+# Material quality checks (scripts/check_materials.sh): nbqa runs flake8 over
+# notebooks using the repo-root .flake8 config.
+lint = [
+    "nbqa==1.9.1",
+    "flake8==7.4.1",
 ]

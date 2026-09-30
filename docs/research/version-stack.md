@@ -4,6 +4,18 @@ Researched: 2026-09-29. Sources: PyPI JSON API, endoflife.date, official release
 (pandas blog, scikit-learn whatsnew/highlights, xgboost changelog, shap GitHub releases,
 polars GitHub releases, uv installation docs).
 
+> **Update 2026-09-30 (v2 stack, #21/#25):** the pins above describe the v1 stack.
+> The v2 course (unstructured data) splits into two pinned files —
+> `requirements-offline.txt` (CPU: adds PyTorch base torch 2.14.0 /
+> torchvision 0.29.0 / torchaudio 2.11.0, transformers 5.17.0, datasets 5.0.1,
+> easyocr 1.7.2, pytesseract 0.3.13, surya-ocr 0.22.1, anomalib 2.6.2,
+> librosa 1.0.0, pythainlp 5.3.8, jiwer 4.0.0) and `requirements-kaggle.txt`
+> (GPU: transformers/datasets/librosa/demucs 4.1.0/jiwer/pythainlp — torch comes
+> preinstalled on Kaggle). xgboost / shap / streamlit left the main stack; they
+> survive only in the transitional `v1-legacy` dependency group. Resolution note:
+> uv locks only the target platforms (`tool.uv.environments`) because shap's
+> darwin-x86_64 `numba<0.63` pin conflicts with librosa 1.0.0 / numpy 2.5.
+
 ## Pinned versions (ready for requirements.txt)
 
 ```text

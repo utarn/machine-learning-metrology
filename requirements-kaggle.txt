@@ -1,0 +1,23 @@
+# Kaggle GPU environment — v2 stack (companion to requirements-offline.txt)
+# Pinned 2026-09-30 per #21 decision; see docs/research/version-stack.md and
+# docs/course-outline-v2.md §4.
+#
+# Kaggle notebooks ship their own CUDA builds of torch/torchvision/torchaudio,
+# so the three torch pins below are COMMENTED OUT: forcing a reinstall would
+# download ~1 GB of CUDA wheels per session for no benefit. Verify the preinstalled
+# version with `torch.__version__`; only if it is older than the pin here should a
+# notebook's install cell uncomment them.
+
+# torch==2.14.0
+# torchvision==0.29.0
+# torchaudio==2.11.0
+transformers==5.17.0
+datasets==5.0.1
+
+# --- audio — Modules M4 (spectrogram CNN) / M5 (Demucs, ASR) ---
+librosa==1.0.0
+demucs==4.1.0
+
+# --- text — Module M3 (fine-tune mBERT on Thai sentiment) ---
+pythainlp==5.3.8
+jiwer==4.0.0

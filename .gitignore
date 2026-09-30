@@ -7,3 +7,6 @@ __pycache__/
 # Claude Code session artifacts
 .claude/
 .check-env/
+
+# Downloaded datasets (Fashion-MNIST etc. — pre-bundled on learner machines)
+data/

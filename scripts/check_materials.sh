@@ -27,8 +27,8 @@ cd "$(dirname "$0")/.."
 
 CHECK_ENV="${CHECK_ENV:-.check-env}"
 NB_TIMEOUT="${NB_TIMEOUT:-600}"
-# v2 GPU modules (M3, M4-CNN, M5) will be listed here once their material lands.
-KAGGLE_MODULES="${KAGGLE_MODULES:-}"
+# v2 GPU modules that land with their material; extend as M4-CNN, M5 follow.
+KAGGLE_MODULES="${KAGGLE_MODULES:-module3_thai_sentiment_mbert}"
 
 NBQA="$CHECK_ENV/bin/nbqa"
 JUPYTER="$CHECK_ENV/bin/jupyter"

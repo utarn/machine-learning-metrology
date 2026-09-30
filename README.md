@@ -9,6 +9,7 @@
 | `day1/module0_primer/` | Module M0 — Primer: จากข้อมูลสู่โมเดล (v2) |
 | `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
 | `day1/module2_thai_ocr_bakeoff/` | Module M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table (v2) |
+| `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |
@@ -53,6 +54,7 @@ scripts/check_materials.sh
 
 - [ ] **Internet ในห้อง** ใช้งานได้จริง — โมดูล Kaggle (M3, M4-CNN, M5) ต้องใช้; ทดสอบ Wi-Fi + จำนวนอุปกรณ์พร้อมกัน
 - [ ] **บัญชี Kaggle รายคน** — ผู้เรียนทุกคนสมัครและยืนยันอีเมล/โทรศัพท์ก่อนวันอบรม (ยืนยันเบอร์เพื่อปลดล็อก GPU/Internet ใน notebook)
+- [ ] **Kaggle T4 — validate โมดูล M3 ด้วยมือ 1 รอบ** — รัน `day2/module3_thai_sentiment_mbert/book.ipynb` ท็อป-ท้ายจบบน Kaggle (Accelerator: GPU T4, Internet: On) ก่อนวันอบรม — สคริปต์ตรวจสื่อ lint ให้แต่ไม่ execute โมดูล Kaggle
 - [ ] **เครื่องทดสอบ** — ลองตั้งแต่เครื่องจริง 1 เครื่องของห้อง: `setup.ps1` → `smoke_test.py` ต้องขึ้น PASS → เปิด `uv run jupyter lab` ได้
 - [ ] **เครื่องผู้สอน** — รัน `scripts/check_materials.sh` ผ่านก่อนวันสอน
 - [ ] **Pre-bundle โมเดล/dataset ลงเครื่อง offline** (ดูแผนด้านล่าง)

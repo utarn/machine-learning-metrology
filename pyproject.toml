@@ -32,14 +32,12 @@ dependencies = [
 
 [tool.uv]
 # Groups installed by plain `uv sync`. lint = material quality checks
-# (repo convention: .venv/bin/nbqa flake8). v1-legacy is TRANSITIONAL —
-# required only by the archived v1 material still in day1/–day3/
-# (xgboost/shap/streamlit left the main stack per #21); drop it when the
-# v1 modules are retired.
-default-groups = ["lint", "v1-legacy"]
-# Platforms the course targets. darwin-x86_64 is excluded: shap (v1-legacy
-# group only) pins numba<0.63 there, which conflicts with the numpy 2.5
-# stack (see "macOS Intel quirk" in docs/research/version-stack.md).
+# (repo convention: .venv/bin/nbqa flake8).
+default-groups = ["lint"]
+# Platforms the course targets. darwin-x86_64 is excluded: untested target
+# (no Intel-Mac test machine; the historical reason — shap's numba pin in
+# the since-retired v1-legacy group — is gone with #34, but keep the
+# supported-platform list unchanged so uv.lock stays stable).
 environments = [
     "sys_platform == 'win32'",
     "sys_platform == 'darwin' and platform_machine == 'arm64'",
@@ -47,14 +45,6 @@ environments = [
 ]
 
 [dependency-groups]
-# Transitional: needed only by the archived v1 material still in day1/–day3/
-# (xgboost/shap/streamlit were removed from the main stack per #21).
-# Delete this group when the v1 modules are retired.
-v1-legacy = [
-    "xgboost==3.4.1",
-    "shap==0.52.0",
-    "streamlit==1.64.0",
-]
 # Material quality checks (scripts/check_materials.sh): nbqa runs flake8 over
 # notebooks using the repo-root .flake8 config.
 lint = [

@@ -1,30 +1,33 @@
 # Machine Learning for Advanced Metrology Research — สื่อการเรียน
 
-หลักสูตรฝึกอบรม 3 วัน สำหรับนักวิจัยด้านเมโทรโลยี — โน้ตบุ๊กทั้งหมดรันได้ offline (ชุดข้อมูลใส่มาในโฟลเดอร์ `datasets/` พร้อม citation แล้ว)
+หลักสูตรฝึกอบรม 3 วัน สำหรับนักวิจัยด้านเมโทรโลยี — ML บนข้อมูลไม่มีโครงสร้าง
+(ภาพ / ภาษา / เสียง) ครบวงจร **"มีข้อมูล → ให้ ML เรียนรู้ → ได้โมเดล → วัดผล"**
+ทุกโมดูล โครงหลักสูตรฉบับเต็มอยู่ที่ `docs/course-outline-v2.md`
+สื่อชุดเดิม (v1) เก็บถาวรที่ branch
+[`archive/v1-course`](https://github.com/utarn/machine-learning-metrology/tree/archive/v1-course)
 
-## โครงสร้าง
+## ภาพรวมหลักสูตร 3 วัน
 
-| โฟลเดอร์ | หัวข้อ |
-|---|---|
-| `day1/module0_primer/` | Module M0 — Primer: จากข้อมูลสู่โมเดล (v2) |
-| `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
-| `day1/module2_thai_ocr_bakeoff/` | Module M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table (v2) |
-| `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
-| `day2/module4_sound_to_numbers/` | Module M4 — เสียง→ตัวเลข→โมเดล: MFCC features + random forest บน ESC-50 (offline CPU) (v2) |
-| `day2/module4_esc50_cnn/` | Module M4-CNN — เทรน spectrogram CNN จากศูนย์ บน ESC-50 (Kaggle GPU) (v2) |
-| `day2/module5_kws_demucs_asr/` | Module M5 — เทรน KWS CNN จากศูนย์บน Speech Commands v2 + Demucs แยก stems + ASR bake-off Whisper vs Typhoon-ASR-0.6B วัด WER บน FLEURS-Thai (Kaggle GPU) (v2) |
-| `day3/module6_patchcore_anomaly/` | Module M6 — PatchCore anomaly detection: สอนจากภาพปกติ ~20 ใบ → คะแนน + heatmap (v2) |
-| `day3/module7_grad_cam_error_analysis/` | Module M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality (v2) |
-| `day3/module8_capstone/` | Module M8 — Capstone: 3 แทร็ก (defect จากภาพ / เสียงเครื่องจักร / OCR รายงานการวัด) + starter notebooks + rubric นำเสนอ 10 นาที (v2) |
-| `day1/module2_feature_engineering/` | Module 2 — feature engineering |
-| `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
-| `day2/module4_classification/` | Module 4 — pass/fail classification |
-| `day2/module5_evaluation/` | Module 5 — model evaluation |
-| `day2/module6_clustering/` | Module 6 — clustering |
-| `day2/module7_anomaly_detection/` | Module 7 — anomaly detection บน telemetry |
-| `day3/module8_time_series/` | Module 8 — time-series forecasting (reference drift) |
-| `day3/module9_pipelines_interpretability/` | Module 9 — pipelines & SHAP |
-| `day3/module10_capstone/` | Module 10 — capstone (3 แทร็ก) + Streamlit demo |
+| วัน | ธีม | โมดูล |
+|---|---|---|
+| **Day 1** | ข้อมูลภาพ: จากตัวเลขสู่โมเดล | M0 Primer · M1 เทรน 3 แบบ (HOG+SVM → CNN → transfer learning) · M2 Thai OCR bake-off (CER) |
+| **Day 2** | ข้อมูลภาษาและเสียง: เทรนจริงบนข้อมูลจริง | M3 fine-tune mBERT บน Wisesight · M4 เสียง→ตัวเลข→โมเดล (MFCC+RF / spectrogram CNN) · M5 KWS จากศูนย์ + Demucs + ASR วัด WER |
+| **Day 3** | ข้อมูลเฉพาะทาง + capstone | M6 PatchCore จากภาพปกติ ~20 ใบ · M7 Grad-CAM + วิเคราะห์ error ทุก modality · M8 Capstone 3 แทร็ก + นำเสนอ 10 นาที |
+
+## โครงสร้างและการแบ่งแพลตฟอร์มต่อโมดูล
+
+| โฟลเดอร์ | โมดูล | Platform |
+|---|---|---|
+| `day1/module0_primer/` | M0 — Primer: จากข้อมูลสู่โมเดล | Offline (CPU) |
+| `day1/module1_train_3_ways/` | M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning | Offline (CPU) |
+| `day1/module2_thai_ocr_bakeoff/` | M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table | Offline (CPU) — **ต้อง pre-bundle โมเดล** (ดูด้านล่าง) |
+| `day2/module3_thai_sentiment_mbert/` | M3 — Thai sentiment: fine-tune mBERT บน Wisesight | **Kaggle (GPU T4)** |
+| `day2/module4_sound_to_numbers/` | M4 — เสียง→ตัวเลข→โมเดล: MFCC features + random forest บน ESC-50 | Offline (CPU) — ต้องมี ESC-50 บนดิสก์ (ดูด้านล่าง) |
+| `day2/module4_esc50_cnn/` | M4-CNN — เทรน spectrogram CNN จากศูนย์ บน ESC-50 | **Kaggle (GPU T4)** |
+| `day2/module5_kws_demucs_asr/` | M5 — เทรน KWS CNN จากศูนย์บน Speech Commands v2 + Demucs แยก stems + ASR bake-off Whisper vs Typhoon-ASR-0.6B วัด WER บน FLEURS-Thai | **Kaggle (GPU T4)** |
+| `day3/module6_patchcore_anomaly/` | M6 — PatchCore anomaly detection: สอนจากภาพปกติ ~20 ใบ → คะแนน + heatmap | Offline (CPU) — backbone จาก HF cache (ดูด้านล่าง) |
+| `day3/module7_grad_cam_error_analysis/` | M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality | Offline (CPU) |
+| `day3/module8_capstone/` | M8 — Capstone 3 แทร็ก (defect จากภาพ / เสียงเครื่องจักร / OCR รายงานการวัด) + starter + rubric | Offline (CPU) สำหรับ starter ทั้งสาม (ต่อยอด GPU ได้ตามโน้ตบุ๊ก) |
 
 ในแต่ละหัวข้อ: `book.ipynb` = สื่อประกอบการสอน · `exercise.ipynb` = **แบบฝึกหัดที่คุณทำ** (เติมช่อง `# TODO`) · `explanation.md` = สคริปต์ภาพประกอบ ส่วนไฟล์เฉลย (`solution.ipynb`) ผู้สอนจะเปิดเผยในห้อง **หลังจบช่วงแล็บนั้น ๆ** — โมดูล capstone (M8) ใช้ starter notebook แทร็กละ 1 ไฟล์แทน book/exercise (ดู `day3/module8_capstone/README.md`)
 
@@ -46,7 +49,7 @@ uv run python smoke_test.py   # ต้องขึ้นว่า PASS
 - **`requirements-offline.txt`** — เครื่องผู้เรียน CPU, ใช้ offline · ติดตั้งผ่าน `uv sync` (ไฟล์ `pyproject.toml` ใช้ pin ชุดเดียวกัน) หรือ pip ด้วยไฟล์นี้
 - **`requirements-kaggle.txt`** — โมดูลที่ต้องใช้ GPU บน Kaggle Notebooks (torch ใช้ของ Kaggle ที่ติดตั้งมาแล้ว ดูคอมเมนต์ในไฟล์)
 
-หมายเหตุ: สื่อชุด v1 ที่ยังอยู่ใน `day1/`–`day3/` บางโมดูลใช้ `xgboost`/`shap`/`streamlit` ซึ่งถูกตัดออกจาก stack หลักแล้ว — `uv sync` ยังติดตั้งให้ผ่าน dependency group ชั่วคราว `v1-legacy` (จะลบออกเมื่อสื่อชุดใหม่มาแทนที่) และสำเนาฉบับเต็มของสื่อ v1 เก็บไว้ที่ branch [`archive/v1-course`](https://github.com/utarn/machine-learning-metrology/tree/archive/v1-course)
+หมายเหตุ: สำเนาฉบับเต็มของสื่อชุดเดิม (v1) เก็บไว้ที่ branch [`archive/v1-course`](https://github.com/utarn/machine-learning-metrology/tree/archive/v1-course) — repo นี้บรรจุเฉพาะสื่อชุด v2 แล้ว
 
 ## ตรวจคุณภาพสื่อ (ผู้ดูแล repo)
 
@@ -54,9 +57,11 @@ uv run python smoke_test.py   # ต้องขึ้นว่า PASS
 scripts/check_materials.sh
 ```
 
-ตรวจทุกอย่างในคำสั่งเดียว: flake8 ทุก notebook (ผ่าน nbqa) + execute โน้ตบุ๊กของทุกโมดูล offline ใน env สะอาดจาก `uv.lock` — โมดูล Kaggle GPU อยู่นอกสคริปต์นี้ (ตรวจด้วยมือบน Kaggle ตาม checklist ด้านล่าง)
+ตรวจทุกอย่างในคำสั่งเดียว: flake8 ทุก notebook (ผ่าน nbqa) + execute โน้ตบุ๊กของทุกโมดูล offline (M0, M1, M2, M4-RF, M6, M7, M8) ใน env สะอาดจาก `uv.lock` — โมดูล Kaggle GPU (M3, M4-CNN, M5) อยู่นอกสคริปต์นี้ (ตรวจด้วยมือบน Kaggle ตาม checklist ด้านล่าง)
 
 ## ก่อนวันอบรม — checklist
+
+สามรายการ Kaggle T4 (M3, M4-CNN, M5) ต้อง **validate ด้วยมือบน Kaggle จริง 1 รอบต่อโมดูล** — สคริปต์ตรวจสื่อ lint ให้แต่ไม่ execute โมดูล GPU เหล่านี้ จึงต้องแต๊กเฉพาะเมื่อรันจริงบน Kaggle แล้วเท่านั้น
 
 - [ ] **Internet ในห้อง** ใช้งานได้จริง — โมดูล Kaggle (M3, M4-CNN, M5) ต้องใช้; ทดสอบ Wi-Fi + จำนวนอุปกรณ์พร้อมกัน
 - [ ] **บัญชี Kaggle รายคน** — ผู้เรียนทุกคนสมัครและยืนยันอีเมล/โทรศัพท์ก่อนวันอบรม (ยืนยันเบอร์เพื่อปลดล็อก GPU/Internet ใน notebook)
@@ -75,7 +80,7 @@ scripts/check_materials.sh
 
 | รายการ | ใช้ใน | License | ขนาดโดยประมาณ |
 |---|---|---|---|
-| Fashion-MNIST | M1, capstone A | MIT | ~30–60 MB |
+| Fashion-MNIST | M1, M7, capstone A | MIT | ~30–60 MB |
 | torchvision weights: MobileNetV3 (M1), backbone ของ anomalib (M6) | M1, M6 | BSD-3 / Apache-2.0 | ~50–150 MB — M6 = timm `wide_resnet50_2.racm_in1k` ~130 MB ลง HF cache |
 | EasyOCR weights (detection + Thai recognition) | M2 | Apache-2.0 | ~90 MB |
 | Tesseract `tha`/`eng` traineddata (tessdata_best) | M2 | Apache-2.0 | ~23 MB — **อยู่ใน repo แล้ว** (`datasets/tessdata/`, notebook ชี้ผ่าน `--tessdata-dir` เอง) |
@@ -91,7 +96,7 @@ scripts/check_materials.sh
   - **M4 ครึ่ง CNN (`day2/module4_esc50_cnn/`, บน Kaggle):** โน้ตบุ๊กดาวน์โหลดข้อมูลเองบน Kaggle (Internet: On) ไม่ต้องเตรียมอะไรบนเครื่องผู้เรียน
 - **MVTec AD** (non-commercial) — ไม่ใช้; M6 ใช้รูปถ่ายจริงของผู้เรียนแทน
 
-ชุดข้อมูลตารางของ v1 ทั้งหมดอยู่ใน `datasets/` แล้ว (license แจกต่อได้ — ดู `datasets/README.md`)
+ชุดข้อมูลที่ license แจกต่อได้ทั้งหมดอยู่ใน `datasets/` แล้ว (ดู `datasets/README.md`)
 
 **วิธี pre-bundle โมเดล M2 ลงเครื่อง offline** (รันครั้งเดียวบนเครื่องที่มีอินเทอร์เน็ต
 จากนั้นคัดลอกโฟลเดอร์ cache ไปยังเครื่องผู้เรียนที่ตำแหน่งเดียวกัน — notebook
@@ -121,5 +126,5 @@ uv run jupyter lab
 
 ## การส่งงาน
 
-- **แล็บ (Modules 0–9):** ทำใน `exercise.ipynb` — ผู้สอนเช็คความคืบหน้าในห้อง ไม่ต้องส่งไฟล์
-- **Capstone (Module 10):** ส่ง zip ของโฟลเดอร์ repo + โน้ตบุ๊กที่รันผ่านผ่าน LMS ภายใน 1 สัปดาห์ — เกณฑ์ให้คะแนนอยู่ใน `day3/module10_capstone/README.md`
+- **แล็บ (M0–M7):** ทำใน `exercise.ipynb` — ผู้สอนเช็คความคืบหน้าในห้อง ไม่ต้องส่งไฟล์
+- **Capstone (M8):** ส่ง zip ของโฟลเดอร์ repo + โน้ตบุ๊กที่รันผ่านผ่าน LMS ภายใน 1 สัปดาห์ — เกณฑ์ให้คะแนนอยู่ใน `day3/module8_capstone/README.md`

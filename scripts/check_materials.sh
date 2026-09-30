@@ -6,17 +6,16 @@
 # Does two things, in order:
 #   1. Lint  — nbqa flake8 over every notebook in day*/ (repo-root .flake8)
 #   2. Execute — every OFFLINE module's notebooks, top to bottom, in a clean
-#      environment built from the pinned uv.lock (offline stack + the
-#      transitional v1-legacy group, since the v1 modules still in
-#      day1/–day3/ use xgboost/shap).
+#      environment built from the pinned uv.lock (offline stack; the v1
+#      modules were retired in #34, so every remaining module but the Kaggle
+#      GPU ones runs offline on CPU).
 #
 # Kaggle GPU modules are intentionally OUT of scope here — they are validated
 # manually on Kaggle; see the "ก่อนวันอบรม" checklist in README.md.
 #
 # Knobs (environment variables):
-#   KAGGLE_MODULES  space-separated module dir names to skip (v2 GPU modules
-#                   get added here when they land; empty for now — every v1
-#                   module is offline)
+#   KAGGLE_MODULES  space-separated module dir names to skip (the v2 GPU
+#                   modules: M3 / M4-CNN / M5)
 #   NB_TIMEOUT      per-notebook execution timeout in seconds (default 600)
 #   CHECK_ENV       path of the scratch environment (default .check-env)
 #
@@ -27,7 +26,7 @@ cd "$(dirname "$0")/.."
 
 CHECK_ENV="${CHECK_ENV:-.check-env}"
 NB_TIMEOUT="${NB_TIMEOUT:-600}"
-# v2 GPU modules that land with their material; extend as the next one follows.
+# v2 GPU modules — validated manually on Kaggle, not executed here.
 KAGGLE_MODULES="${KAGGLE_MODULES:-module3_thai_sentiment_mbert module4_esc50_cnn module5_kws_demucs_asr}"
 
 NBQA="$CHECK_ENV/bin/nbqa"

@@ -34,9 +34,9 @@ Run All ผ่านก่อน แล้วค่อยต่อยอดต�
   (3) Track C สาธิตคุณค่าได้ครบด้วย ตาราง pandas + กราฟ matplotlib ในโน้ตบุ๊ก
 - **เงื่อนไขนำกลับมาใหม่:** ถ้า cohort อนาคตมีโจทย์ "ส่งมอบโมเดลถึงมือผู้ใช้"
   (เช่น ให้ช่างใช้ตรวจเองหลังจบคอร์ส) ให้เปิดประเด็นตอนออกแบบหลักสูตรรอบถัดไป —
-  ตัวอย่าง Streamlit app เก่าของ capstone v1 ยังดูได้ที่
-  `day3/module10_capstone/app.py` และ streamlit ยังติดตั้งอยู่ผ่าน dependency
-  group ชั่วคราว `v1-legacy`
+  ตัวอย่าง Streamlit app เก่าของ capstone v1 ดูได้ที่ branch
+  [`archive/v1-course`](https://github.com/utarn/machine-learning-metrology/tree/archive/v1-course)
+  (`day3/module10_capstone/app.py`)
 
 ## ไฟล์ในโฟลเดอร์
 

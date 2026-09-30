@@ -3,6 +3,11 @@
 **Date:** 2026-09-29 · **Branch:** `research/datasets`
 **Status policy (locked):** popular public datasets are PREFERRED; any dataset requiring citation is fine — citation + source URL must be shown in every notebook that uses it. Deterministic seeded synthetic data is the fallback ONLY where no public counterpart fits the metrology story.
 
+> **หมายเหตุ (2026-09-30, #34):** เอกสารนี้เป็นบันทึกวิจัยชุดข้อมูลของสื่อชุด v1
+> (โมดูล 3–10 เดิม — เก็บถาวรที่ branch `archive/v1-course`) ส่วน dataset
+> ของสื่อชุด v2 ปัจจุบันดู `datasets/README.md` และ
+> `docs/course-outline-v2.md` §6
+
 **Verification:** every URL below was fetched (HTTP 200) and the data files actually downloaded/inspected on 2026-09-29. See [Verification log](#appendix-verification-log).
 
 ---

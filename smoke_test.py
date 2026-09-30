@@ -4,11 +4,10 @@
 # polars read -> sklearn fit/predict -> torch tensor math -> matplotlib render.
 # Ends with a clear pass/fail line.
 #
-# The packages removed from the main stack in #21 (xgboost / shap / streamlit)
-# are checked only if present - they are installed by the transitional
-# `v1-legacy` dependency group (`uv sync --group v1-legacy`) for the archived
-# v1 material, and are NOT required by the v2 offline stack
-# (requirements-offline.txt).
+# Covers the full offline v2 stack (requirements-offline.txt). The packages
+# removed from the main stack in #21 (xgboost / shap / streamlit) belonged to
+# the v1 material, which is archived on branch archive/v1-course and no
+# longer ships with the course (retired in #34).
 
 import sys
 import tempfile
@@ -24,15 +23,6 @@ def check(label, fn):
     except Exception as exc:  # noqa: BLE001 - report any failure and continue
         failures.append((label, exc))
         print(f"  FAIL {label}: {exc}")
-
-
-def optional_check(label, fn):
-    """Report, but never fail on, packages outside the main stack."""
-    try:
-        fn()
-        print(f"  OK   {label}")
-    except Exception as exc:  # noqa: BLE001 - optional, informational only
-        print(f"  SKIP {label}: {exc}")
 
 
 def check_versions():
@@ -116,14 +106,6 @@ def check_matplotlib():
     plt.close(fig)
 
 
-def check_v1_legacy():
-    import xgboost
-    import shap
-    import streamlit
-    print(f"  xgboost=={xgboost.__version__} shap=={shap.__version__} "
-          f"streamlit=={streamlit.__version__}")
-
-
 print("ML for Metrology course environment smoke test")
 print("Versions:")
 check("versions import + print", check_versions)
@@ -133,8 +115,6 @@ check("scikit-learn fit + predict", check_sklearn)
 check("torch tensor math (CPU)", check_torch)
 check("librosa MFCC", check_librosa)
 check("matplotlib render to file", check_matplotlib)
-print("v1 legacy packages (optional, transitional):")
-optional_check("xgboost / shap / streamlit", check_v1_legacy)
 
 print()
 if failures:

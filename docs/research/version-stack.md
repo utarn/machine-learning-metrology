@@ -35,6 +35,14 @@ polars GitHub releases, uv installation docs).
 > `MODEL_CACHE_DIR` (default per-OS datalab cache dir; manifest-based local-only
 > check → no network once the dir is populated).
 
+> **Update 2026-09-30 (#34, v1 retired):** the v1 modules in `day1/`–`day3/`
+> were removed (material lives only on `archive/v1-course`), so the
+> transitional `v1-legacy` dependency group (xgboost / shap / streamlit) and
+> the `darwin-x86_64` exclusion it forced were dropped from
+> `pyproject.toml`/`uv.lock`. The pins below describe the v1 stack and are
+> kept as the research record only — the live pins are
+> `requirements-offline.txt` / `requirements-kaggle.txt` above.
+
 ## Pinned versions (ready for requirements.txt)
 
 ```text

@@ -10,6 +10,8 @@
 | `day1/module1_train_3_ways/` | Module M1 — เทรน 3 แบบบนข้อมูลเดียวกัน: HOG+SVM → CNN → transfer learning (v2) |
 | `day1/module2_thai_ocr_bakeoff/` | Module M2 — Thai OCR bake-off: CER ด้วย jiwer + Surya layout/table (v2) |
 | `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
+| `day2/module4_sound_to_numbers/` | Module M4 — เสียง→ตัวเลข→โมเดล: MFCC features + random forest บน ESC-50 (offline CPU) (v2) |
+| `day2/module4_esc50_cnn/` | Module M4-CNN — เทรน spectrogram CNN จากศูนย์ บน ESC-50 (Kaggle GPU) (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |
@@ -55,6 +57,8 @@ scripts/check_materials.sh
 - [ ] **Internet ในห้อง** ใช้งานได้จริง — โมดูล Kaggle (M3, M4-CNN, M5) ต้องใช้; ทดสอบ Wi-Fi + จำนวนอุปกรณ์พร้อมกัน
 - [ ] **บัญชี Kaggle รายคน** — ผู้เรียนทุกคนสมัครและยืนยันอีเมล/โทรศัพท์ก่อนวันอบรม (ยืนยันเบอร์เพื่อปลดล็อก GPU/Internet ใน notebook)
 - [ ] **Kaggle T4 — validate โมดูล M3 ด้วยมือ 1 รอบ** — รัน `day2/module3_thai_sentiment_mbert/book.ipynb` ท็อป-ท้ายจบบน Kaggle (Accelerator: GPU T4, Internet: On) ก่อนวันอบรม — สคริปต์ตรวจสื่อ lint ให้แต่ไม่ execute โมดูล Kaggle
+- [ ] **Kaggle T4 — validate โมดูล M4-CNN ด้วยมือ 1 รอบ** — รัน `day2/module4_esc50_cnn/book.ipynb` ท็อป-ท้ายจบบน Kaggle (GPU T4, Internet: On) — ใช้เวลาราว 20–25 นาที (ดาวน์โหลด ESC-50 ~600 MB รวมอยู่ใน notebook แล้ว) — จด accuracy ของสองวิธีจากรอบนั้นไว้เทียบในห้อง
+- [ ] **ESC-50 ลงเครื่องผู้เรียน (M4-RF)** — ครึ่ง RF ของ M4 รันบนเครื่องผู้เรียน ต้องมีข้อมูล ESC-50 บนดิสก์ก่อน (license ห้าม bundle — ดาวน์โหลดเองจาก [GitHub ของ ESC-50](https://github.com/karolpiczak/ESC-50)) วางตามตำแหน่งที่ notebook หาเจอ (ดูหัวข้อ pre-bundle ด้านล่าง)
 - [ ] **เครื่องทดสอบ** — ลองตั้งแต่เครื่องจริง 1 เครื่องของห้อง: `setup.ps1` → `smoke_test.py` ต้องขึ้น PASS → เปิด `uv run jupyter lab` ได้
 - [ ] **เครื่องผู้สอน** — รัน `scripts/check_materials.sh` ผ่านก่อนวันสอน
 - [ ] **Pre-bundle โมเดล/dataset ลงเครื่อง offline** (ดูแผนด้านล่าง)
@@ -78,6 +82,8 @@ scripts/check_materials.sh
 **ห้าม pre-bundle (license ไม่อนุญาตแจกต่อเชิงพาณิชย์):**
 
 - **ESC-50** (CC BY-NC 3.0, ~600 MB) — ใช้ในห้องเรียนได้ แต่ให้ผู้เรียน/ผู้สอนดาวน์โหลดเองจาก [GitHub ของ ESC-50](https://github.com/karolpiczak/ESC-50) หรือสลับไปใช้ Speech Commands v2 (CC BY 4.0, ~2.4 GB, แจกต่อได้) ถ้าต้องการชุดที่ bundle ได้
+  - **M4 ครึ่ง RF (`day2/module4_sound_to_numbers/`, เครื่องผู้เรียน):** โน้ตบุ๊กหาโฟลเดอร์ `ESC-50-master` (ต้องมี `meta/esc50.csv`) ตามลำดับ — env var `ESC50_DIR` → `datasets/esc50/ESC-50-master` ใน repo → `~/.cache/esc50/ESC-50-master` → `~/Downloads/ESC-50-master` — ถ้าไม่เจอจะดาวน์โหลดเองจาก GitHub (ต้องมีอินเทอร์เน็ตตอนเตรียม ไม่ใช่ระหว่างสอน) วิธีเตรียมเครื่อง offline: `curl -L -o ~/.cache/esc50/esc50-master.zip https://github.com/karoldvl/ESC-50/archive/master.zip` แล้วแตกไฟล์ใน `~/.cache/esc50/` (Windows: ตั้ง `ESC50_DIR` ชี้โฟลเดอร์ที่แตกแล้วแทนก็ได้) — **อย่า commit ไฟล์เสียงขึ้น git**
+  - **M4 ครึ่ง CNN (`day2/module4_esc50_cnn/`, บน Kaggle):** โน้ตบุ๊กดาวน์โหลดข้อมูลเองบน Kaggle (Internet: On) ไม่ต้องเตรียมอะไรบนเครื่องผู้เรียน
 - **MVTec AD** (non-commercial) — ไม่ใช้; M6 ใช้รูปถ่ายจริงของผู้เรียนแทน
 
 ชุดข้อมูลตารางของ v1 ทั้งหมดอยู่ใน `datasets/` แล้ว (license แจกต่อได้ — ดู `datasets/README.md`)

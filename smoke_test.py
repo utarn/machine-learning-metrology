@@ -1,13 +1,21 @@
 # Smoke test for the ML for Metrology course environment.
-# Run:  uv run python smoke_test.py   (or: python smoke_test.py in an activated venv)
+# Run: uv run python smoke_test.py (or: python smoke_test.py in a venv)
 # Prints library versions, then exercises the core workflow:
-# polars read -> sklearn fit/predict -> matplotlib render. Ends with a clear pass/fail line.
+# polars read -> sklearn fit/predict -> torch tensor math -> matplotlib render.
+# Ends with a clear pass/fail line.
+#
+# The packages removed from the main stack in #21 (xgboost / shap / streamlit)
+# are checked only if present - they are installed by the transitional
+# `v1-legacy` dependency group (`uv sync --group v1-legacy`) for the archived
+# v1 material, and are NOT required by the v2 offline stack
+# (requirements-offline.txt).
 
 import sys
 import tempfile
 from pathlib import Path
 
 failures = []
+
 
 def check(label, fn):
     try:
@@ -17,9 +25,30 @@ def check(label, fn):
         failures.append((label, exc))
         print(f"  FAIL {label}: {exc}")
 
+
+def optional_check(label, fn):
+    """Report, but never fail on, packages outside the main stack."""
+    try:
+        fn()
+        print(f"  OK   {label}")
+    except Exception as exc:  # noqa: BLE001 - optional, informational only
+        print(f"  SKIP {label}: {exc}")
+
+
 def check_versions():
-    import matplotlib, numpy, pandas, polars, pyarrow, seaborn
-    import sklearn, xgboost, shap, streamlit, joblib, jupyterlab, ipykernel
+    import matplotlib
+    import numpy
+    import pandas
+    import polars
+    import pyarrow
+    import seaborn
+    import sklearn
+    import joblib
+    import torch
+    import torchvision
+    import torchaudio
+    import transformers
+    import datasets
 
     versions = {
         "python": sys.version.split()[0],
@@ -30,23 +59,26 @@ def check_versions():
         "matplotlib": matplotlib.__version__,
         "seaborn": seaborn.__version__,
         "scikit-learn": sklearn.__version__,
-        "xgboost": xgboost.__version__,
-        "shap": shap.__version__,
-        "streamlit": streamlit.__version__,
         "joblib": joblib.__version__,
+        "torch": torch.__version__,
+        "torchvision": torchvision.__version__,
+        "torchaudio": torchaudio.__version__,
+        "transformers": transformers.__version__,
+        "datasets": datasets.__version__,
     }
     for name, ver in versions.items():
         print(f"  {name}=={ver}")
 
+
 def check_polars():
     import polars as pl
-    import tempfile
     df = pl.DataFrame({"x": [1.0, 2.0, 3.0], "y": ["a", "b", "c"]})
     with tempfile.TemporaryDirectory() as tmp:
         p = Path(tmp) / "smoke.csv"
         df.write_csv(p)
         back = pl.read_csv(p)
     assert back.shape == (3, 2) and back["x"].sum() == 6.0
+
 
 def check_sklearn():
     from sklearn.linear_model import LinearRegression
@@ -58,16 +90,39 @@ def check_sklearn():
     pred = model.predict(X[:5])
     assert pred.shape == (5,)
 
+
+def check_torch():
+    import torch
+    x = torch.arange(6, dtype=torch.float32).reshape(2, 3)
+    assert x.sum().item() == 15.0  # CPU is the expected path on lab machines
+
+
+def check_librosa():
+    import librosa
+    import numpy as np
+    y = np.sin(2 * np.pi * 440 * np.linspace(0, 0.2, 4410))
+    mfcc = librosa.feature.mfcc(y=y, sr=22050, n_mfcc=5)
+    assert mfcc.shape[0] == 5
+
+
 def check_matplotlib():
     import matplotlib
     matplotlib.use("Agg")  # no display needed in a smoke test
     import matplotlib.pyplot as plt
-    import tempfile
     fig, ax = plt.subplots()
     ax.plot([0, 1, 2], [0, 1, 4])
     with tempfile.TemporaryDirectory() as tmp:
         fig.savefig(Path(tmp) / "smoke.png")
     plt.close(fig)
+
+
+def check_v1_legacy():
+    import xgboost
+    import shap
+    import streamlit
+    print(f"  xgboost=={xgboost.__version__} shap=={shap.__version__} "
+          f"streamlit=={streamlit.__version__}")
+
 
 print("ML for Metrology course environment smoke test")
 print("Versions:")
@@ -75,7 +130,11 @@ check("versions import + print", check_versions)
 print("Core workflow:")
 check("polars write/read CSV", check_polars)
 check("scikit-learn fit + predict", check_sklearn)
+check("torch tensor math (CPU)", check_torch)
+check("librosa MFCC", check_librosa)
 check("matplotlib render to file", check_matplotlib)
+print("v1 legacy packages (optional, transitional):")
+optional_check("xgboost / shap / streamlit", check_v1_legacy)
 
 print()
 if failures:

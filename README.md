@@ -12,6 +12,7 @@
 | `day2/module3_thai_sentiment_mbert/` | Module M3 — Thai sentiment: fine-tune mBERT บน Wisesight (Kaggle GPU) (v2) |
 | `day2/module4_sound_to_numbers/` | Module M4 — เสียง→ตัวเลข→โมเดล: MFCC features + random forest บน ESC-50 (offline CPU) (v2) |
 | `day2/module4_esc50_cnn/` | Module M4-CNN — เทรน spectrogram CNN จากศูนย์ บน ESC-50 (Kaggle GPU) (v2) |
+| `day3/module7_grad_cam_error_analysis/` | Module M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |

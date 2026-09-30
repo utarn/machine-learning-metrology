@@ -15,6 +15,7 @@
 | `day2/module5_kws_demucs_asr/` | Module M5 — เทรน KWS CNN จากศูนย์บน Speech Commands v2 + Demucs แยก stems + ASR bake-off Whisper vs Typhoon-ASR-0.6B วัด WER บน FLEURS-Thai (Kaggle GPU) (v2) |
 | `day3/module6_patchcore_anomaly/` | Module M6 — PatchCore anomaly detection: สอนจากภาพปกติ ~20 ใบ → คะแนน + heatmap (v2) |
 | `day3/module7_grad_cam_error_analysis/` | Module M7 — วิเคราะห์โมเดลที่เราสร้าง: Grad-CAM บน CNN จาก M1 + metric รวมทุก modality (v2) |
+| `day3/module8_capstone/` | Module M8 — Capstone: 3 แทร็ก (defect จากภาพ / เสียงเครื่องจักร / OCR รายงานการวัด) + starter notebooks + rubric นำเสนอ 10 นาที (v2) |
 | `day1/module2_feature_engineering/` | Module 2 — feature engineering |
 | `day1/module3_regression/` | Module 3 — sensor calibration curve (regression) |
 | `day2/module4_classification/` | Module 4 — pass/fail classification |
@@ -25,7 +26,7 @@
 | `day3/module9_pipelines_interpretability/` | Module 9 — pipelines & SHAP |
 | `day3/module10_capstone/` | Module 10 — capstone (3 แทร็ก) + Streamlit demo |
 
-ในแต่ละหัวข้อ: `book.ipynb` = สื่อประกอบการสอน · `exercise.ipynb` = **แบบฝึกหัดที่คุณทำ** (เติมช่อง `# TODO`) · `explanation.md` = สคริปต์ภาพประกอบ ส่วนไฟล์เฉลย (`solution.ipynb`) ผู้สอนจะเปิดเผยในห้อง **หลังจบช่วงแล็บนั้น ๆ**
+ในแต่ละหัวข้อ: `book.ipynb` = สื่อประกอบการสอน · `exercise.ipynb` = **แบบฝึกหัดที่คุณทำ** (เติมช่อง `# TODO`) · `explanation.md` = สคริปต์ภาพประกอบ ส่วนไฟล์เฉลย (`solution.ipynb`) ผู้สอนจะเปิดเผยในห้อง **หลังจบช่วงแล็บนั้น ๆ** — โมดูล capstone (M8) ใช้ starter notebook แทร็กละ 1 ไฟล์แทน book/exercise (ดู `day3/module8_capstone/README.md`)
 
 ## ติดตั้ง (ทำครั้งเดียวก่อนวันแรก)
 

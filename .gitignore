@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Claude Code session artifacts
+.claude/
+.check-env/
+
+# Downloaded datasets (Fashion-MNIST etc. — per-machine scratch: generated
+# images, anomalib runs, M1 checkpoints)
+data/
+
+# Pre-bundled course material (CC BY-NC / Datalab weights — heavy, ~2.7 GB;
+# NOT tracked in git — fill with scripts/prebundle_offline.py on an internet
+# machine or copy datasets/ across machines via USB/LAN; see README
+# pre-bundle plan)
+datasets/esc50/
+datasets/fashion_mnist/
+datasets/models/

@@ -1,0 +1,105 @@
+file_name,text,category
+images/hand_0.png,"bio-engineer",handwritten
+images/hand_1.png,"ทดสอบโมเดล",handwritten
+images/hand_2.png,"๓๑/๐๑/๒๕๖๗",handwritten
+images/hand_3.png,"31/01/2567",handwritten
+images/hand_4.png,"3.12 Trillion",handwritten
+images/hand_5.png,"#VOO and chill",handwritten
+images/hand_6.png,"Intel Corp",handwritten
+images/hand_7.png,"AMD INC.",handwritten
+images/hand_8.png,"NVIDIA",handwritten
+images/hand_9.png,"Alphabet",handwritten
+images/hand_10.png,"MasterCard",handwritten
+images/hand_11.png,"META PLATFORMS, INC.",handwritten
+images/hand_12.png,"ELI LILLY",handwritten
+images/hand_13.png,"Arthur J. Gallagher",handwritten
+images/hand_14.png,"พินัยกรรม",handwritten
+images/hand_15.png,"ฝากคุณยาย",handwritten
+images/hand_16.png,"837",handwritten
+images/hand_17.png,"อาหารและ",handwritten
+images/hand_18.png,"T3 นอก",handwritten
+images/hand_19.png,"43,210-",handwritten
+images/hand_20.png,"ไม้พาย",handwritten
+images/hand_21.png,"29-10-53",handwritten
+images/pdf_0.png,"อ.เมือง จ.กำแพงเพชร ๖๒๐๐๐",document
+images/pdf_1.png,"จึงเรียนมาเพื่อโปรดพิจารณา",document
+images/pdf_2.png,"มหาวิทยาลัยราชภัฏกำแพงเพชร",document
+images/pdf_3.png,"ที่ อว ๐๖๑๕/.........",document
+images/pdf_4.png,"(รองศาสตราจารย์วิสิฐ  ธัญญะวัน)",document
+images/pdf_5.png,"โทร ๐ ๕๕๗๐ ๖๕๕๕ ต่อ",document
+images/pdf_6.png,"""ราชภัฏ รวมพลัง ยับยั้งทุจริต""",document
+images/pdf_7.png,"ข้าพเจ้า (นาย/นาง/นางสาว)",document
+images/pdf_8.png,"165,000.00",document
+images/pdf_9.png,"-ก่อห้องขนาด 20X15",document
+images/pdf_10.png,"เอกสารประกอบ)",document
+images/pdf_11.png,"เสนาบดีกระทรวงมหาดไทย",document
+images/pdf_12.png,"ได้แก่ (1)",document
+images/pdf_13.png,"ร.ท. หญิง ธาราทิพย์",document
+images/pdf_14.png,"เอกสารวิชาการ",document
+images/pdf_15.png,"ประชาชนอาเซียน",document
+images/pdf_16.png,"ในปัจจุบัน",document
+images/pdf_17.png,"อายุ: >=30,",document
+images/pdf_18.png,"พ.ศ. 2562""",document
+images/pdf_19.png,"เช่น บทความ",document
+images/pdf_20.png,"ระเบียบนี้เรียกว่า",document
+images/pdf_21.png,"ของข้อ ๑๑",document
+images/pdf_enth_0.png,"เช่น Few-shot",document_enth
+images/pdf_enth_1.png,"ตามข้อมูล Fitbit",document_enth
+images/pdf_enth_2.png,"และ LLMs",document_enth
+images/pdf_enth_3.png,"และ Smart Watch",document_enth
+images/pdf_enth_4.png,"โมเดล AI",document_enth
+images/pdf_enth_5.png,"ความเสี่ยงของ NCDs",document_enth
+images/pdf_enth_6.png,"(AI) และอุปกรณ์",document_enth
+images/pdf_enth_7.png,"เพศ: FEMALE,",document_enth
+images/pdf_enth_8.png,"Label: ดัชนี",document_enth
+images/pdf_enth_9.png,"BMI ต่ำกว่า 19:",document_enth
+images/pdf_enth_10.png,"Workout เป็นสิ่งที่ดี",document_enth
+images/pdf_enth_11.png,"ตามผล Feedback",document_enth
+images/real_0.png,"ชื่อหมู่บ้าน",real_document
+images/real_1.png,"อำเภอบางปะกง",real_document
+images/real_2.png,"บ้าน",real_document
+images/real_3.png,"กุมภาพันธ์ 2556",real_document
+images/real_4.png,"สาขาศาลยุติธรรม",real_document
+images/real_5.png,"ไอแอพพ์เทคโนโลยี",real_document
+images/real_6.png,"KASIKORNBANK",real_document
+images/real_7.png,"3-91675",real_document
+images/real_8.png,"K0576887",real_document
+images/real_9.png,"NAME",real_document
+images/real_10.png,"2,000.00",real_document
+images/real_11.png,"07806A",real_document
+images/real_12.png,"63,000.00",real_document
+images/real_13.png,"จังหวัดศรีสะเกษ",real_document
+images/real_14.png,"อมตะนคร",real_document
+images/real_15.png,"ห้างหุ้นส่วนจำกัด",real_document
+images/real_16.png,"จำกัด (มหาชน)",real_document
+images/real_17.png,"15/04/22ACM",real_document
+images/real_18.png,"รางวัลที่ 1",real_document
+images/real_19.png,"30,000,000 บาท",real_document
+images/real_20.png,"1.370 % ต่อปี",real_document
+images/real_21.png,"(ดอกเบี้ย+เลขท้าย",real_document
+images/real_22.png,"1. ฝากไม่ครบ 6 เดือน",real_document
+images/real_23.png,"ไม่ครบ 2 ปี",real_document
+images/scene_0.png,"#EASYLIFE",scene_text
+images/scene_1.png,"LUXASIA",scene_text
+images/scene_2.png,"กองทุน RMF SSF",scene_text
+images/scene_3.png,"บริษัท พีทีที โกลบอล",scene_text
+images/scene_4.png,"มากกว่า",scene_text
+images/scene_5.png,"Join Our",scene_text
+images/scene_6.png,"พร้อมรับใช้",scene_text
+images/scene_7.png,"แหลมตาชี",scene_text
+images/scene_8.png,"โค้งอันตราย",scene_text
+images/scene_9.png,"อ. ศรีราชา",scene_text
+images/scene_10.png,"คำขึ้นต้น",scene_text
+images/scene_11.png,"อังคาร",scene_text
+images/scene_12.png,"ขึ้น 9 ค่ำ เดือน 10",scene_text
+images/scene_13.png,"BANG & OLUFSEN",scene_text
+images/scene_14.png,"หนึ่ง นม",scene_text
+images/scene_15.png,"PRICE DOWN",scene_text
+images/scene_16.png,"390",scene_text
+images/scene_17.png,"Microsoft",scene_text
+images/scene_18.png,"UnitedHealthcare",scene_text
+images/scene_19.png,"Linde",scene_text
+images/scene_20.png,"iPad Pro",scene_text
+images/scene_21.png,"MacBook Air",scene_text
+images/scene_22.png,"WINNER",scene_text
+images/scene_23.png,"฿100,000",scene_text

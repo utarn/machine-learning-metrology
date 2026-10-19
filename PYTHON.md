@@ -11,6 +11,9 @@ winget source update
 ## 2. ติดตั้งเครื่องมือหลัก
 
 ```powershell
+# Git
+winget install --id Git.Git -e
+
 # Python 3.14
 winget install --id Python.Python.3.14 -e
 
